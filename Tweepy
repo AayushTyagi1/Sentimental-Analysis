@@ -1,0 +1,36 @@
+# Extraction of tweets using tweepy
+
+import tweepy 
+  
+ #### Fill credentials
+consumer_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" 
+consumer_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  
+#### Function which will extract tweets 
+def get_tweets(username): 
+          
+#### Authorization
+        auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
+#### Access
+        auth.set_access_token(access_key, access_secret) 
+  
+#### Call api 
+        api = tweepy.API(auth) 
+#### number the tweers to be extracted
+        number_of_tweets=500
+        tweets = api.user_timeline(screen_name=username) 
+  
+#### Take an array 
+        tmp=[]  
+#### Create CSV file
+        tweets_for_csv = [tweet.text for tweet in tweets]  
+        for j in tweets_for_csv:
+            tmp.append(j)  
+        print(tmp) 
+  
+  
+#### Driver code 
+if __name__ == '__main__': 
+    get_tweets("twitter-handle")  
